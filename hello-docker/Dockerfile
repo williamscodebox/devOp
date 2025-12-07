@@ -26,4 +26,4 @@ COPY . .
 EXPOSE 4000
 
 # Start the server
-CMD ["node", "hello.js"]
+CMD ["nodemon", "hello.js"]
