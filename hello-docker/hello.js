@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hello and Welcome from Docker + Node!");
+  res.send("Hello from Docker + Node!");
 });
 
 // Keep the server alive on port 3000

@@ -27,7 +27,7 @@ COPY . .
 EXPOSE 4000
 
 # Use npx to run nodemon from local node_modules
-CMD ["npx", "nodemon", "hello.js"]
+CMD ["npm", "run", "dev"]
 
 # ---------- Production Stage ----------
 FROM base AS prod
