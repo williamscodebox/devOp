@@ -12,6 +12,7 @@ COPY package*.json ./
 # ---------- Development Stage ----------
 FROM base AS dev
 
+# Switch to root to fix permissions
 USER root
 RUN mkdir -p /app/node_modules && chown -R app:app /app
 USER app
@@ -25,18 +26,15 @@ COPY . .
 # Expose port
 EXPOSE 4000
 
-# Install nodemon globally (or keep in devDependencies)
-RUN npm install -g nodemon
-
-# Start with nodemon for hot reload
-CMD ["nodemon", "hello.js"]
+# Use npx to run nodemon from local node_modules
+CMD ["npx", "nodemon", "hello.js"]
 
 # ---------- Production Stage ----------
 FROM base AS prod
 
 # Switch to root to adjust permissions
 USER root
-RUN chown -R app:app /app
+RUN mkdir -p /app/node_modules && chown -R app:app /app
 USER app
 
 # Install only production dependencies
